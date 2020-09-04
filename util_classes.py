@@ -205,7 +205,8 @@ class database:
       if str(order_by) in table.fields:
         statement += "ORDER BY %s "
         statement += "DESC " if order_desc else "ASC "
-        data = data + (str(order_by),)
+        column_idx = table.fields.index(str(order_by))+1
+        data = data + (column_idx,)
     # but trim the trailing space off
     statement = statement[:-1]
     with db_open() as conn:
