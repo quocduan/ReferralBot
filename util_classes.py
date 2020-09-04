@@ -186,14 +186,14 @@ class database:
           else:
             notfirst = True
           if(type(value) is list or type(value) is tuple):
-            statement = statement + "(" + str(key) + "=%s "
+            statement = statement + "(" + str(key) + "= %s "
             data = data + (value[0],)
             for idx in range(len(value)-1):
-              statement = statement + "OR " + str(key) + "=%s "
+              statement = statement + "OR " + str(key) + "= %s "
               data = data + (value[idx+1],)
             statement = statement[:-1] + ") "
           else:
-            statement = statement + str(key) + "=%s "
+            statement = statement + str(key) + "= %s "
             data = data + (value,)
       # if the code didn't request anything, return nothing.
       if(len(statement) == 19 + len(table.table_name)):

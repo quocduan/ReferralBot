@@ -89,7 +89,8 @@ async def on_command_error(ctx,error):
   else:
     name = ctx.command.qualified_name if ctx.command else "None"
     await ctx.send("Command error. Please contact the developer if this persists.")
-    print(str(error))
+    await ctx.send("```\n" + str(error) + "\n```")
+    #print(str(error))
     logger.exception("Error with command {0} in guild {1.name} ({1.id}): {2}".format(name,ctx.guild,error))
     raise error
 
