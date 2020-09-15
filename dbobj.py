@@ -40,7 +40,7 @@ class scores:
 class user_link:
   sql_create = '''CREATE TABLE user_link (
   source bigint PRIMARY KEY,
-  target bigints);'''
+  target bigint);'''
   sql_insert = '''INSERT INTO user_link(source,target)
   VALUES(%s,%s)'''
   sql_update = '''UPDATE user_link
