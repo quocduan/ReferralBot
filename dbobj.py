@@ -15,7 +15,7 @@
 
 class servers:
   sql_create = '''CREATE TABLE IF NOT EXISTS servers (
-  id integer PRIMARY KEY,
+  id bigint PRIMARY KEY,
   prefix text);'''
   sql_insert = '''INSERT INTO servers(id,prefix)
   VALUES(%s,%s)'''
@@ -27,8 +27,8 @@ class servers:
 
 class scores:
   sql_create = '''CREATE TABLE IF NOT EXISTS scores (
-  user_id integer PRIMARY KEY,
-  score integer);'''
+  user_id bigint PRIMARY KEY,
+  score bigint);'''
   sql_insert = '''INSERT INTO scores(user_id,score)
   VALUES(%s,%s)'''
   sql_update = '''UPDATE scores
@@ -39,8 +39,8 @@ class scores:
 
 class user_link:
   sql_create = '''CREATE TABLE user_link (
-  source integer PRIMARY KEY,
-  target integer);'''
+  source bigint PRIMARY KEY,
+  target bigints);'''
   sql_insert = '''INSERT INTO user_link(source,target)
   VALUES(%s,%s)'''
   sql_update = '''UPDATE user_link
