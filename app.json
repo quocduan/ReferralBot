@@ -1,6 +1,6 @@
 {
   "name": "Referral Bot",
-  "description": "A discord bot that allows you to track how many people each member has brought in to the server.",
+  "description": "A discord bot that allows you to track how many people each member has brought in to the server. It only works on individual servers (unless there's a lot of overlap between servers and even then why would you) so it needs to be hosted individually.",
   "repository": "https://github.com/geekkid1/ReferralBot",
   "env": {
     "BOT_TOKEN":{
