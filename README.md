@@ -20,7 +20,7 @@ First it will probably ask you for an app name, which you can set to anything yo
 
 ### 3: Configure PostgreSQL Database
 
-This step is a little bit more hands-on than the previous two, and really just sets up the database so everything can be stored in the right place. After the app has been deployed to your Heroku account, install the Heroku CLI on your computer if you haven't already, as well as the PostgreSQL program itself (get the insaller [here](https://www.postgresql.org/download/), look for solutions on [this page](https://devcenter.heroku.com/articles/heroku-postgresql#pg-psql) and others linked by that page if you can't figure out how to do something). Then run the command `heroku pg:psql -a [app-name]`, replacing `[app-name]` with the name of your app.
+This step is a little bit more hands-on than the previous two, and really just sets up the database so everything can be stored in the right place. After the app has been deployed to your Heroku account, install the Heroku CLI on your computer if you haven't already, as well as the PostgreSQL program itself (get the insaller [here](https://www.postgresql.org/download/), look for solutions on [this page](https://devcenter.heroku.com/articles/heroku-postgresql#pg-psql) and others linked by that page if you can't figure out how to do something). Then run the command `heroku pg:psql -a [app-name]`, replacing `[app-name]` with the name of your app. The first time you run this command it will ask you to log in so it knows you have access to the app.
 
 This will connect your local command prompt to the database the PostgreSQL addon for Heroku set up for you. From here we must create the tables that will store your data. Start with the `servers` table:
 
