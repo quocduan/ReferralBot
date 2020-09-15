@@ -55,3 +55,5 @@ This is the final step before you can start using the bot, and it kinda consists
 First things first, you actually have to turn on the bot. Go in to the Resources tab on your Heroku application's dashboard. There should be a single Dyno listed under "free dynos" labeled "worker". Click on the button with the pencil on it, click the toggle switch so that it's on, then click "confirm". This will start the bot process.
 
 Now that you've turned it on, go back to the Discord Developer Portal, generate an invite link for your bot, and invite it to the server you intend to use it on. Additionally if the logging channels are on a different server make sure it's also there. Again, won't actually log, but I haven't figured out how to get it to work without it *thinking* it's logging.
+
+After that, you're done! If you have any additional issues, please ask me. I'm looking in to finding a way to get automatic updates and will let you know if I do. There's probably some Heroku resource somewhere that I just haven't found yet.
