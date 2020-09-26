@@ -260,3 +260,32 @@ class database:
         c.execute(statement, data)
     else:
       print("Statement must be a 'DELETE' statement.")
+
+  def test_delete(table,**kwargs):
+    statement = "DELETE FROM " + table.table_name + " WHERE "
+    data = ()
+    notfirst = False
+    for key, value in kwargs.items():
+      if(str(key) in table.fields):
+        if(notfirst):
+          statement = statement + "AND "
+        else:
+          notfirst = True
+        if(type(value) is list or type(value) is tuple):
+          statement = statement + "(" + str(key) + "=%s "
+          data = data + (value[0],)
+          for idx in range(len(value)-1):
+            statement = statement + "OR " + str(key) + "=%s "
+            data = data + (value[idx+1],)
+          statement = statement[:-1] + ") "
+        else:
+          statement = statement + str(key) + "=%s "
+          data = data + (value,)
+    if(len(statement) == 18 + len(table.table_name)):
+      print("This is not going to go well. Nothing was added to the statement!")
+      return []
+    statement = statement[:-1]
+    print(statement)
+    with db_open() as conn:
+      c = conn.cursor()
+      c.execute(statement, data)

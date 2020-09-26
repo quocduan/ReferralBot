@@ -1,7 +1,7 @@
 import discord,sqlite3,argparse,logging,time,asyncio
 from discord.ext import commands
 from discord.ext.commands import when_mentioned
-import command_basics,referral_cog,dbobj
+import command_basics,referral_cog,dbobj,debug_cog
 from util_classes import database
 from config.config_vars import config
 
@@ -84,6 +84,8 @@ async def on_command_error(ctx,error):
     await ctx.send('"{0}" is not a valid command.'.format(ctx.invoked_with))
   elif(isinstance(error, commands.errors.NoPrivateMessage)):
     await ctx.send('"{0}" can not be invoked outside of a server.'.format(ctx.invoked_with))
+  elif(isinstance(error, commands.errors.CommandOnCooldown)):
+    await ctx.send('Please wait **{0}** seconds before using that command.'.format(round(error.retry_after,1)))
   elif(isinstance(error, commands.errors.CheckFailure)):
     print("Someone did something they should not have...")
   else:
@@ -98,6 +100,7 @@ async def on_command_error(ctx,error):
 # project. See the other files in the folder for more details
 bot.add_cog(command_basics.general(bot))
 bot.add_cog(referral_cog.referrals(bot))
+bot.add_cog(debug_cog.debug(bot))
 
 infoformatter = logging.Formatter('%(asctime)s %(levelname)s %(module)s - %(message)s','%Y-%m-%d %H:%M')
 debugformatter = logging.Formatter('%(asctime)s %(levelname)s %(module)s - %(message)s','%Y-%m-%d %H:%M:%S')

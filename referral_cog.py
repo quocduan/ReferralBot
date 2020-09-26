@@ -41,7 +41,8 @@ class referrals(commands.Cog):
   def __init__(self,bot):
     self.bot = bot
 
-  @commands.command(name="referred-by",help="Inform the bot that you were referred to the server by a specific user.")
+  @commands.cooldown(1,10,commands.BucketType.guild)
+  @commands.command(name="referred-by",aliases=['rb','recruited-by'],help="Inform the bot that you were referred to the server by a specific user.")
   async def referred_by(self,ctx,user:discord.User=None):
     # Error conditions
     if(user == None):
@@ -54,6 +55,9 @@ class referrals(commands.Cog):
     if(existing_user != None and existing_user != []):
       existing_user = existing_user[1]
       user_obj = self.bot.get_user(existing_user)
+      if(user == user_obj):
+        await ctx.send("You are already registered as referred by that user!")
+        return
       confirm = await Confirm("Are you sure you want to change your referring user from **" + user_obj.name + "#" + user_obj.discriminator + "** to **" + user.name + "#" + user.discriminator + "**?").prompt(ctx)
       if confirm:
         data = (user.id,ctx.author.id)

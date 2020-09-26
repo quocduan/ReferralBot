@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import sqlite3
-import dbobj
+import dbobj,os
 from util_classes import database
 #from help import commands_help
 
@@ -9,10 +9,14 @@ class general(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
 
+  @commands.cooldown(1,5,commands.BucketType.guild)
   @commands.command(name="ping",help="Ping the bot and return its latency in ms.")
   async def ping(self, ctx):
     await ctx.send('Pong! **{0} ms**'.format(round(self.bot.latency*1000,1)))
 
+  @commands.guild_only()
+  @commands.check_any(commands.is_owner(),commands.has_permissions(manage_channels=True))
+  @commands.cooldown(1,10,commands.BucketType.guild)
   @commands.command(name="prefix",help="Change the command prefix for the bot.")
   async def change_prefix(self, ctx, prefix):
     data = (prefix,ctx.guild.id)
@@ -36,6 +40,7 @@ class general(commands.Cog):
     else:
       await ctx.send("Cog not found.")
 
+  @commands.cooldown(1,3,commands.BucketType.guild)
   @commands.command(name="help",aliases=['h'],help="Display the command help message.")
   async def help(self, ctx, *, query=None):
     out = []
