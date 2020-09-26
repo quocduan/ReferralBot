@@ -10,7 +10,7 @@ class debug(commands.Cog):
 
   @commands.is_owner()
   @commands.command(name="clear-referral",aliases=['cr'],help="Usable only by bot owner for debug purposes.")
-  def clear_referral_cmd(self,ctx,user:discord.User=None):
+  async def clear_referral_cmd(self,ctx,user:discord.User=None):
     if(user == None):
       await ctx.send("You must tag a user!")
       return
