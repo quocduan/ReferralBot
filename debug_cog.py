@@ -14,7 +14,7 @@ class debug(commands.Cog):
     if(user == None):
       await ctx.send("You must tag a user!")
       return
-    existing_user = database.select_one(dbobj.user_link, source=ctx.author.id)
+    existing_user = database.select_one(dbobj.user_link, source=user.id)
     if(existing_user != None and existing_user != []):
       existing_user = existing_user[1]
       user_obj = self.bot.get_user(existing_user)
