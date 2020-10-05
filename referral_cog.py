@@ -87,7 +87,7 @@ class referrals(commands.Cog):
     await ctx.send("Process complete!")
     #await ctx.send("This command is not yet fully implemented. Sorry.")
 
-  @commands.command(name="score",aliases=['s','referrals'],help="Check the referral score of yourself or another user.")
+  @commands.command(name="score",aliases=['sc','referrals'],help="Check the referral score of yourself or another user.")
   async def score_check(self,ctx,user:discord.User=None):
     # error correction
     target = None
