@@ -23,7 +23,7 @@ class DiscordLogger(logging.Handler):
   def __init__(self, loggingChannel, bot, rateLimiting):
     logging.Handler.__init__(self)
     self.bot = bot
-    self.loggingChannel = loggingChannel
+    self.loggingChannel = int(loggingChannel)
     self.lastSent = time.time()
     self.logStore = []
     self.rateLimiting = rateLimiting
