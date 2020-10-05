@@ -8,7 +8,7 @@ Unfortunately, this bot isn't all ready to go from step one. There's more to it,
 
 ### 1: Bot Profile
 
-First things first, create a Discord bot profile through the Discord Developer portal [here.](https://discord.com/developers/) Find the bot token and copy it into a text file so it can easily be found later. At this time, designate two channels of your choice in a Discord server you own (or have moderator privileges on) as logging channels. Logging doesn't strictly work with the latest version of the bot, but it'll break if you don't give it channels it can access so just bear with me. Copy the channel ids of these channels into the same text file.
+First things first, create a Discord bot profile through the Discord Developer portal [here.](https://discord.com/developers/) Find the bot token and copy it into a text file so it can easily be found later. At this time, designate two channels of your choice in a Discord server you own (or have moderator privileges on) as logging channels. This will allow the bot to log certain events to those channels for reference later, so it's very important.
 
 ### 2: Heroku App
 
@@ -54,6 +54,6 @@ This is the final step before you can start using the bot, and it kinda consists
 
 First things first, you actually have to turn on the bot. Go in to the Resources tab on your Heroku application's dashboard. There should be a single Dyno listed under "free dynos" labeled "worker". Click on the button with the pencil on it, click the toggle switch so that it's on, then click "confirm". This will start the bot process.
 
-Now that you've turned it on, go back to the Discord Developer Portal, generate an invite link for your bot, and invite it to the server you intend to use it on. Additionally if the logging channels are on a different server make sure it's also there. Again, won't actually log, but I haven't figured out how to get it to work without it *thinking* it's logging.
+Now that you've turned it on, go back to the Discord Developer Portal, generate an invite link for your bot, and invite it to the server you intend to use it on. Additionally if the logging channels are on a different server make sure it's also there, or it won't be able to log errors.
 
 After that, you're done! If you have any additional issues, please ask me. I'm looking in to finding a way to get automatic updates and will let you know if I do. There's probably some Heroku resource somewhere that I just haven't found yet.
