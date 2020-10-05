@@ -1,7 +1,7 @@
 import discord,sqlite3,argparse,logging,time,asyncio
 from discord.ext import commands
 from discord.ext.commands import when_mentioned
-import command_basics,referral_cog,dbobj,debug_cog
+import command_basics,referral_cog,dbobj,debug_cog,webhooks_cog
 from util_classes import database
 from config.config_vars import config
 
@@ -101,6 +101,7 @@ async def on_command_error(ctx,error):
 bot.add_cog(command_basics.general(bot))
 bot.add_cog(referral_cog.referrals(bot))
 bot.add_cog(debug_cog.debug(bot))
+bot.add_cog(webhooks_cog.webhooks(bot))
 
 infoformatter = logging.Formatter('%(asctime)s %(levelname)s %(module)s - %(message)s','%Y-%m-%d %H:%M')
 debugformatter = logging.Formatter('%(asctime)s %(levelname)s %(module)s - %(message)s','%Y-%m-%d %H:%M:%S')
