@@ -41,7 +41,7 @@ class webhooks(commands.Cog):
     url_string = "None"
     if avatar_url != None:
       url_string = avatar_url
-    if existing == []:
+    if existing == [] or existing == None:
       database.insert_row(dbobj.webhook_profile,(ctx.author.id,username,url_string))
     else:
       database.update_data(dbobj.webhook_profile,(username,url_string,ctx.author.id))
