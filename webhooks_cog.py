@@ -29,9 +29,9 @@ class webhooks(commands.Cog):
       else:
         await ctx.message.delete()
         if str(profile[2]) == "None":
-          wh[0].send(msg,username=str(profile[1])
+          wh[0].send(msg,username=str(profile[1]))
         else:
-          wh[0].send(msg,username=str(profile[1]),avatar_url=str(profile[2])
+          wh[0].send(msg,username=str(profile[1]),avatar_url=str(profile[2]))
 
   @can_use_webhooks()
   @commands.command(name="webhook-profile",aliases=['wp'],help="Add or update your webhook profile, usable on any webhook accessible by this bot.")
