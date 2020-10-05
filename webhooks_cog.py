@@ -27,6 +27,7 @@ class webhooks(commands.Cog):
         await ctx.message.delete()
         await wh[0].send(msg)
       else:
+        print(profile[1])
         await ctx.message.delete()
         if str(profile[2]) == "None":
           wh[0].send(msg,username=str(profile[1]))
@@ -44,4 +45,4 @@ class webhooks(commands.Cog):
       database.insert_row(dbobj.webhook_profile,(ctx.author.id,username,url_string))
     else:
       database.update_data(dbobj.webhook_profile,(username,url_string,ctx.author.id))
-    await ctx.send("Profile Updated!")
+    await ctx.send("Profile Updated with username: " + username)
