@@ -38,7 +38,7 @@ class scores:
   table_name = "scores"
 
 class user_link:
-  sql_create = '''CREATE TABLE user_link (
+  sql_create = '''CREATE TABLE IF NOT EXISTS user_link (
   source bigint PRIMARY KEY,
   target bigint);'''
   sql_insert = '''INSERT INTO user_link(source,target)
@@ -48,6 +48,20 @@ class user_link:
   WHERE source = %s'''
   fields = ("source","target")
   table_name = "user_link"
+
+class webhook_profile:
+  sql_create='''CREATE TABLE IF NOT EXISTS webhook_profile (
+  user_id bigint PRIMARY KEY,
+  username text,
+  avatar_url text);'''
+  sql_insert = '''INSERT INTO webhook_profile(user_id,username,avatar_url)
+  VALUES(%s,%s,%s)'''
+  sql_update = '''UPDATE webhook_profile
+  SET username = %s,
+  avatar_url = %s,
+  WHERE user_id = %s'''
+  fields = ("user_id","username","avatar_url")
+  table_name = "webhook_profile"
 
 # Add your other things here with the same data structure to make them work with the built-in
 # database system in util_classes.py

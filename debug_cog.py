@@ -34,11 +34,6 @@ class debug(commands.Cog):
       await ctx.send("That user has not declared anyone as their referrer yet!")
 
   @commands.is_owner()
-  @commands.command(name="webhook-test",aliases=['wt'],help="Send a webhook message in this channel if such a webhook exists.")
-  async def webhook_test_cmd(self,ctx,*,msg):
-    wh = await ctx.channel.webhooks()
-    if wh == []:
-      await ctx.send("No webhooks in this channel!")
-    else:
-      await ctx.message.delete()
-      await wh[0].send(msg)
+  @commands.command(name="repair-database",help="Create database tables if they do not already exist. Add new lines to the code if you add new tables.")
+  async def db_repair(self,ctx):
+    database.repair_table(dbobj.webhook_profile)

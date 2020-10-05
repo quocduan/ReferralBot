@@ -159,6 +159,10 @@ def db_open():
     conn.close
 
 class database:
+  def repair_table(table):
+    with db_open() as conn:
+      c = conn.cursor()
+      c.execute(table.sql_create)
   # Insert a row in the specified table.
   def insert_row(table, data):
     with db_open() as conn:
