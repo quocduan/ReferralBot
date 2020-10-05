@@ -22,7 +22,7 @@ class webhooks(commands.Cog):
     if wh == []:
       await ctx.send("No webhooks in this channel!")
     else:
-      profile = database.select_one(database.webhook_profile,user_id=ctx.author.id)
+      profile = database.select_one(dbobj.webhook_profile,user_id=ctx.author.id)
       if profile == [] or profile == None:
         await ctx.message.delete()
         await wh[0].send(msg)
@@ -36,11 +36,11 @@ class webhooks(commands.Cog):
   @can_use_webhooks()
   @commands.command(name="webhook-profile",aliases=['wp'],help="Add or update your webhook profile, usable on any webhook accessible by this bot.")
   async def webhook_profile(self,ctx,username,avatar_url=None):
-    existing = database.select_one(database.webhook_profile,user_id=ctx.author.id)
+    existing = database.select_one(dbobj.webhook_profile,user_id=ctx.author.id)
     url_string = "None"
     if avatar_url != None:
       url_string = avatar_url
     if existing == []:
-      database.insert_row(database.webhook_profile,(ctx.author.id,username,url_string))
+      database.insert_row(dbobj.webhook_profile,(ctx.author.id,username,url_string))
     else:
-      database.update_data(database.webhook_profile,(username,url_string,ctx.author.id))
+      database.update_data(dbobj.webhook_profile,(username,url_string,ctx.author.id))
