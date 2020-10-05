@@ -32,3 +32,12 @@ class debug(commands.Cog):
         return
     else:
       await ctx.send("That user has not declared anyone as their referrer yet!")
+
+  @commands.is_owner()
+  @commands.command(name="webhook-test",aliases=['wt'],help="Send a webhook message in this channel if such a webhook exists.")
+  async def webhook_test_cmd(self,ctx,*,msg):
+    wh = await ctx.channel.webhooks()
+    if wh = []:
+      await ctx.send("No webhooks in this channel!")
+    else:
+      wh[0].send(msg)
