@@ -4,6 +4,9 @@ from referral_cog import Confirm
 import dbobj,os
 from util_classes import database
 
+# a simple check to gather the users that can use
+# webhooks and make sure the author of the command
+# is one of those users.
 def can_use_webhooks():
   def predicate(ctx):
     user_str = os.environ['WEBHOOKS_USERS']
@@ -16,7 +19,7 @@ class webhooks(commands.Cog):
     self.bot = bot
 
   @can_use_webhooks()
-  @commands.command(name="webhook-say",aliases=['ws','message'],help="Send a webhook message in this channel if such a webhook exists.")
+  @commands.command(name="webhook-say",aliases=['ws','s','message'],help="Send a webhook message in this channel if such a webhook exists.")
   async def webhook_test_cmd(self,ctx,*,msg):
     wh = await ctx.channel.webhooks()
     if wh == []:
