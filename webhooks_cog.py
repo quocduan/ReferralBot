@@ -44,3 +44,4 @@ class webhooks(commands.Cog):
       database.insert_row(dbobj.webhook_profile,(ctx.author.id,username,url_string))
     else:
       database.update_data(dbobj.webhook_profile,(username,url_string,ctx.author.id))
+    await ctx.send("Profile Updated!")

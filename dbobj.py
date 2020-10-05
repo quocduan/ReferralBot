@@ -58,7 +58,7 @@ class webhook_profile:
   VALUES(%s,%s,%s)'''
   sql_update = '''UPDATE webhook_profile
   SET username = %s,
-  avatar_url = %s,
+  avatar_url = %s
   WHERE user_id = %s'''
   fields = ("user_id","username","avatar_url")
   table_name = "webhook_profile"
