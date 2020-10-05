@@ -40,4 +40,5 @@ class debug(commands.Cog):
     if wh == []:
       await ctx.send("No webhooks in this channel!")
     else:
+      await ctx.message.delete()
       await wh[0].send(msg)
