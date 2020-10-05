@@ -17,3 +17,43 @@ Next you need to add this bot to your Heroku account by pressing this button:
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/geekkid1/ReferralBot)
 
 First it will probably ask you for an app name, which you can set to anything you want really, and then after that some config variables. This is where the token and channel ids come in. Paste them into their respective config variable boxes. Then continue. This will, if it works correctly, auto-deploy the app to your Heroku account. If you don't have one, this will prompt you to create one or log in to one.
+
+### 3: Configure PostgreSQL Database
+
+This step is a little bit more hands-on than the previous two, and really just sets up the database so everything can be stored in the right place. After the app has been deployed to your Heroku account, install the Heroku CLI on your computer if you haven't already, as well as the PostgreSQL program itself (get the insaller [here](https://www.postgresql.org/download/), look for solutions on [this page](https://devcenter.heroku.com/articles/heroku-postgresql#pg-psql) and others linked by that page if you can't figure out how to do something). Then run the command `heroku pg:psql -a [app-name]`, replacing `[app-name]` with the name of your app. The first time you run this command it will ask you to log in so it knows you have access to the app.
+
+This will connect your local command prompt to the database the PostgreSQL addon for Heroku set up for you. From here we must create the tables that will store your data. Start with the `servers` table:
+
+```sql
+CREATE TABLE IF NOT EXISTS servers (
+id bigint PRIMARY KEY,
+prefix text);
+```
+
+It should give you a confirmation line, and you can move on to the `scores` table:
+
+```sql
+CREATE TABLE IF NOT EXISTS scores (
+user_id bigint PRIMARY KEY,
+score bigint);
+```
+
+Again you should get a confirmation line, and you can finally move on to the `user-link` table:
+
+```sql
+CREATE TABLE user_link (
+source bigint PRIMARY KEY,
+target bigint);
+```
+
+This rounds out all of the table creation needed, and you can either quit the process on the command line or just quit the entire command line program for now.
+
+### 4: Final Checks
+
+This is the final step before you can start using the bot, and it kinda consists of multiple actions. Not to fear though, they are relatively simple and you'll be getting the bot up and running in no time at all.
+
+First things first, you actually have to turn on the bot. Go in to the Resources tab on your Heroku application's dashboard. There should be a single Dyno listed under "free dynos" labeled "worker". Click on the button with the pencil on it, click the toggle switch so that it's on, then click "confirm". This will start the bot process.
+
+Now that you've turned it on, go back to the Discord Developer Portal, generate an invite link for your bot, and invite it to the server you intend to use it on. Additionally if the logging channels are on a different server make sure it's also there. Again, won't actually log, but I haven't figured out how to get it to work without it *thinking* it's logging.
+
+After that, you're done! If you have any additional issues, please ask me. I'm looking in to finding a way to get automatic updates and will let you know if I do. There's probably some Heroku resource somewhere that I just haven't found yet.
