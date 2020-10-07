@@ -28,7 +28,7 @@ class webhooks(commands.Cog):
       profile = database.select_one(dbobj.webhook_profile,user_id=ctx.author.id)
       f = None
       if ctx.message.attachments:
-        f = ctx.message.attachments[0].to_file()
+        f = await ctx.message.attachments[0].to_file()
       if profile == [] or profile == None:
         await ctx.message.delete()
         await wh[0].send(msg,file=f)
