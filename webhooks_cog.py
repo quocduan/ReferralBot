@@ -26,16 +26,19 @@ class webhooks(commands.Cog):
       await ctx.send("No webhooks in this channel!")
     else:
       profile = database.select_one(dbobj.webhook_profile,user_id=ctx.author.id)
+      f = None
+      if ctx.message.attachments:
+        f = ctx.message.attachments[0].to_file()
       if profile == [] or profile == None:
         await ctx.message.delete()
-        await wh[0].send(msg)
+        await wh[0].send(msg,file=f)
       else:
         print(profile[1])
         await ctx.message.delete()
         if str(profile[2]) == "None":
-          await wh[0].send(msg,username=str(profile[1]))
+          await wh[0].send(msg,username=str(profile[1]),file=f)
         else:
-          await wh[0].send(msg,username=str(profile[1]),avatar_url=str(profile[2]))
+          await wh[0].send(msg,username=str(profile[1]),avatar_url=str(profile[2]),file=f)
 
   @can_use_webhooks()
   @commands.command(name="webhook-profile",aliases=['wp'],help="Add or update your webhook profile, usable on any webhook accessible by this bot.")
@@ -44,6 +47,8 @@ class webhooks(commands.Cog):
     url_string = "None"
     if avatar_url != None:
       url_string = avatar_url
+    elif ctx.message.attachments:
+      url_string = ctx.message.attachments[0].url
     if existing == [] or existing == None:
       database.insert_row(dbobj.webhook_profile,(ctx.author.id,username,url_string))
     else:

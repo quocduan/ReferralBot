@@ -88,6 +88,8 @@ async def on_command_error(ctx,error):
     await ctx.send('Please wait **{0}** seconds before using that command.'.format(round(error.retry_after,1)))
   elif(isinstance(error, commands.errors.CheckFailure)):
     print("Someone did something they should not have...")
+    name = ctx.command.qualified_name if ctx.command else "None"
+    logger.exception("Permissions failure with command {0} in guild {1.name} ({1.id})".format(name,ctx.guild))
   else:
     name = ctx.command.qualified_name if ctx.command else "None"
     await ctx.send("Command error. Please contact the developer if this persists.")
