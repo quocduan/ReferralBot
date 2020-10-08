@@ -89,7 +89,7 @@ async def on_command_error(ctx,error):
   elif(isinstance(error, commands.errors.CheckFailure)):
     print("Someone did something they should not have...")
     name = ctx.command.qualified_name if ctx.command else "None"
-    logger.exception("Permissions failure with command {0} in guild {1.name} ({1.id})".format(name,ctx.guild))
+    logger.exception("Permissions failure with command {0} in guild {1.name} ({1.id})\nUser {2.name} ({2.id}) attempted to use command, does not have permission.".format(name,ctx.guild,ctx.author))
   else:
     name = ctx.command.qualified_name if ctx.command else "None"
     await ctx.send("Command error. Please contact the developer if this persists.")
