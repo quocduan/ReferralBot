@@ -30,7 +30,13 @@ id bigint PRIMARY KEY,
 prefix text);
 ```
 
-It should give you a confirmation line, and you can move on to the `scores` table:
+It should give you a confirmation line in the command prompt.
+
+#### Quick Note
+
+Given the recent addition of the `repair-database` command to the bot, you can technically stop here if you like, close the command prompt, and move on to the final step. The only reason you have to create the `servers` table manually is because the bot won't work without it and thus you can't run the command that creates the other tables. However, you may also choose to continue making the database tables manually. Your choice. If you wish to run the command, simply get it set up on a server, and using whatever prefix you set, or the default `$`, run the `repair-database` command in the server you added it to. It won't confirm anything, but if you check your database info screen from your Heroku dashboard you should see three additional tables added.
+
+If you want to continue doing this manually, you can move on to the `scores` table:
 
 ```sql
 CREATE TABLE IF NOT EXISTS scores (
