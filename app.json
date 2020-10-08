@@ -11,6 +11,9 @@
     },
     "INFO_LOG":{
       "description": "Same as debug log but for more verbose messages. Also not working, but also breaks if not provided, so please put a channel here."
+    },
+    "WEBHOOKS_USERS":{
+      "description": "A comma-separated list of discord user IDs, listing the people that are allowed to use the webhook functionality of the bot. Does not include the owner by default so make sure to add your name to the list!"
     }
   },
   "addons":[
