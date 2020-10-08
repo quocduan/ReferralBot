@@ -38,12 +38,20 @@ user_id bigint PRIMARY KEY,
 score bigint);
 ```
 
-Again you should get a confirmation line, and you can finally move on to the `user-link` table:
+Again you should get a confirmation line, and you can move on to the `user_link` table:
 
 ```sql
-CREATE TABLE user_link (
+CREATE TABLE IF NOT EXISTS user_link (
 source bigint PRIMARY KEY,
 target bigint);
+```
+
+Yet again it should confirm, and now you can move on to the final table, the `webhook_profile` table:
+```sql
+CREATE TABLE IF NOT EXISTS webhook_profile (
+user_id bigint PRIMARY KEY,
+username text,
+avatar_url text);
 ```
 
 This rounds out all of the table creation needed, and you can either quit the process on the command line or just quit the entire command line program for now.
