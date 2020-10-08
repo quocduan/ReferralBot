@@ -34,6 +34,8 @@ class debug(commands.Cog):
       await ctx.send("That user has not declared anyone as their referrer yet!")
 
   @commands.is_owner()
-  @commands.command(name="repair-database",help="Create database tables if they do not already exist. Add new lines to the code if you add new tables.")
+  @commands.command(name="repair-database",help="Create database tables (other than servers, since if that table doesn't exist, nothing will work) if they do not already exist. Add new lines to the code if you add new tables.")
   async def db_repair(self,ctx):
     database.repair_table(dbobj.webhook_profile)
+    database.repair_table(dbobj.scores)
+    database.repair_table(dbobj.user_link)
