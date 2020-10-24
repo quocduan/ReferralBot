@@ -47,9 +47,13 @@ class DiscordLogger(logging.Handler):
 def get_prefix(bot, message):
     v = database.select_many(dbobj.servers, id=message.guild.id)
     #print(v[0][1])
-    templist = [v[0][1]]
-    templist.extend(when_mentioned(bot,message))
-    return templist
+    test = True
+    if v != [] and v != None and test == False:
+      templist = [v[0][1]]
+      templist.extend(when_mentioned(bot,message))
+      return templist
+    else:
+      return when_mentioned(bot,message)
 
 # argparse setup
 parser = argparse.ArgumentParser(description='Start the discord bot.')
