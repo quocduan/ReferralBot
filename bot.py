@@ -47,7 +47,7 @@ class DiscordLogger(logging.Handler):
 def get_prefix(bot, message):
     v = database.select_many(dbobj.servers, id=message.guild.id)
     #print(v[0][1])
-    test = True
+    test = False
     if v != [] and v != None and test == False:
       templist = [v[0][1]]
       templist.extend(when_mentioned(bot,message))
