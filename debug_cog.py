@@ -48,7 +48,7 @@ class debug(commands.Cog):
     action_row = create_actionrow(*buttons)
     await ctx.send("Wow, this message really does have some buttons!",components=[action_row])
 
-  @commands.event
+  @commands.Cog.listener()
   async def on_component(ctx: ComponentContext):
     # you may want to filter or change behaviour based on custom_id or message
     author = ctx.author
