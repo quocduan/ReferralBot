@@ -6,6 +6,7 @@ from util_classes import database
 from discord_slash.utils.manage_components import create_button, create_actionrow
 from discord_slash.model import ButtonStyle
 from discord_slash.context import ComponentContext
+from discord_slash import cog_ext
 
 class debug(commands.Cog):
   def __init__(self,bot):
@@ -49,8 +50,8 @@ class debug(commands.Cog):
     action_row = create_actionrow(*buttons)
     await ctx.send("Wow, this message really does have some buttons!",components=[action_row])
 
-  @commands.Cog.listener()
-  async def on_component(ctx: ComponentContext):
+  @cog_ext.cog_component(components=["grey","green"])
+  async def some_callbacks(ctx: ComponentContext):
     # you may want to filter or change behaviour based on custom_id or message
     author = ctx.author
     id = ctx.custom_id
