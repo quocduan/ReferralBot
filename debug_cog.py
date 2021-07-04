@@ -57,10 +57,10 @@ class debug(commands.Cog):
     buttons3 = [create_button(style=ButtonStyle.secondary, label=str(i), custom_id="btn_"+str(i)) for i in range(7,10)]
     buttons4 = [create_button(style=ButtonStyle.green, label="O", custom_id="btn_go"), create_button(style=ButtonStyle.secondary, label="0", custom_id="btn_0"), create_button(style=ButtonStyle.red, label="X", custom_id="btn_no")]
 
-    action_row1 = create_action_row(*buttons1)
-    action_row2 = create_action_row(*buttons2)
-    action_row3 = create_action_row(*buttons3)
-    action_row4 = create_action_row(*buttons4)
+    action_row1 = create_actionrow(*buttons1)
+    action_row2 = create_actionrow(*buttons2)
+    action_row3 = create_actionrow(*buttons3)
+    action_row4 = create_actionrow(*buttons4)
 
     await ctx.send("Sorry this keypad doesn't work yet, but enjoy the look.", components=[action_row1, action_row2, action_row3, action_row4])
 
