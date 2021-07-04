@@ -108,17 +108,12 @@ async def on_command_error(ctx,error):
 
 #@bot.event
 async def on_component(ctx: ComponentContext):
-  # you may want to filter or change behaviour based on custom_id or message
-  author = ctx.author
-  id = ctx.custom_id
-  if id == "grey":
-    await ctx.edit_origin(content="{0.mention} pressed a grey button.".format(author))
-  elif id == "green":
-    await ctx.edit_origin(content="{0.mention} pressed a green button.".format(author))
-  else:
-    await ctx.edit_origin(content="{0.mention} pressed a button".format(author))
+  pass
 
 #slash.add_component_callback(some_callback,components=["green","grey"],use_callback_name=False)
+btns = ["btn_"+str(i) for i in range(10)]
+btns.extend(["btn_go","btn_no"])
+slash.add_component_callback(on_component,components=btns,use_callback_name=False)
 
 # Load all of the cogs made in the other python files in this
 # project. See the other files in the folder for more details
