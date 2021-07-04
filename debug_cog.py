@@ -50,14 +50,13 @@ class debug(commands.Cog):
     action_row = create_actionrow(*buttons)
     await ctx.send("Wow, this message really does have some buttons!",components=[action_row])
 
-  @cog_ext.cog_component(components=["grey","green"])
-  async def some_callbacks(ctx: ComponentContext):
-    # you may want to filter or change behaviour based on custom_id or message
-    author = ctx.author
-    id = ctx.custom_id
-    if id == "grey":
-      await ctx.edit_origin(content="{0.mention} pressed a grey button.".format(author))
-    elif id == "green":
-      await ctx.edit_origin(content="{0.mention} pressed a green button.".format(author))
-    else:
-      await ctx.edit_origin(content="{0.mention} pressed a button".format(author))
+async def some_callback(ctx: ComponentContext):
+  # you may want to filter or change behaviour based on custom_id or message
+  author = ctx.author
+  id = ctx.custom_id
+  if id == "grey":
+    await ctx.edit_origin(content="{0.mention} pressed a grey button.".format(author))
+  elif id == "green":
+    await ctx.edit_origin(content="{0.mention} pressed a green button.".format(author))
+  else:
+    await ctx.edit_origin(content="{0.mention} pressed a button".format(author))
