@@ -108,7 +108,7 @@ async def on_command_error(ctx,error):
 
 #@bot.event
 async def on_component(ctx: ComponentContext):
-  pass
+  await ctx.edit_origin("This (otherwise non-functional) keypad has been interacted with at least once.")
 
 async def clear_components(ctx: ComponentContext):
   await ctx.edit_origin(components=[])
