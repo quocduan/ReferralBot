@@ -106,7 +106,7 @@ async def on_command_error(ctx,error):
     logger.exception("Error with command {0} in guild {1.name} ({1.id}): {2}".format(name,ctx.guild,error))
     raise error
 
-@bot.event
+#@bot.event
 async def on_component(ctx: ComponentContext):
   # you may want to filter or change behaviour based on custom_id or message
   author = ctx.author
