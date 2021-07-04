@@ -116,6 +116,7 @@ async def clear_components(ctx: ComponentContext):
 #slash.add_component_callback(some_callback,components=["green","grey"],use_callback_name=False)
 btns = ["btn_"+str(i) for i in range(10)]
 btns.extend(["btn_go"])
+print(btns)
 slash.add_component_callback(on_component,components=btns,use_callback_name=False)
 slash.add_component_callback(clear_components,components=["btn_no"],use_callback_name=False)
 
