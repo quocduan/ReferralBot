@@ -5,6 +5,7 @@ import dbobj,os
 from util_classes import database
 from discord_slash.utils.manage_components import create_button, create_actionrow
 from discord_slash.model import ButtonStyle
+from discord_slash.context import ComponentContext
 
 class debug(commands.Cog):
   def __init__(self,bot):
