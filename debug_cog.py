@@ -50,6 +50,20 @@ class debug(commands.Cog):
     action_row = create_actionrow(*buttons)
     await ctx.send("Wow, this message really does have some buttons!",components=[action_row])
 
+  @commands.command(name="keypad-test",help="Show a sample keypad component layout.")
+  async def test_pad(self,ctx):
+    buttons1 = [create_button(style=ButtonStyle.secondary, label=str(i), custom_id="btn_"+str(i)) for i in range(1,4)]
+    buttons2 = [create_button(style=ButtonStyle.secondary, label=str(i), custom_id="btn_"+str(i)) for i in range(4,7)]
+    buttons3 = [create_button(style=ButtonStyle.secondary, label=str(i), custom_id="btn_"+str(i)) for i in range(7,10)]
+    buttons4 = [create_button(style=ButtonStyle.green, label="O", custom_id="btn_go"), create_button(style=ButtonStyle.secondary, label="0", custom_id="btn_0"), create_button(style=ButtonStyle.red, label="X", custom_id="btn_no")]
+
+    action_row1 = create_action_row(*buttons1)
+    action_row2 = create_action_row(*buttons2)
+    action_row3 = create_action_row(*buttons3)
+    action_row4 = create_action_row(*buttons4)
+
+    await ctx.send("Sorry this keypad doesn't work yet, but enjoy the look.", components=[action_row1, action_row2, action_row3, action_row4])
+
 async def some_callback(ctx: ComponentContext):
   # you may want to filter or change behaviour based on custom_id or message
   author = ctx.author

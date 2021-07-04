@@ -118,7 +118,7 @@ async def on_component(ctx: ComponentContext):
   else:
     await ctx.edit_origin(content="{0.mention} pressed a button".format(author))
 
-slash.add_component_callback(some_callback,components=["green","grey"],use_callback_name=False)
+#slash.add_component_callback(some_callback,components=["green","grey"],use_callback_name=False)
 
 # Load all of the cogs made in the other python files in this
 # project. See the other files in the folder for more details
