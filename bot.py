@@ -4,6 +4,7 @@ from discord.ext.commands import when_mentioned
 import command_basics,referral_cog,dbobj,debug_cog,webhooks_cog
 from util_classes import database
 from config.config_vars import config
+from discord_slash.context import ComponentContext
 
 # things you should do before running this bot:
 # - install dependencies (obviously)
