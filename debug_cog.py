@@ -3,6 +3,8 @@ from discord.ext import commands, menus
 from referral_cog import Confirm
 import dbobj,os
 from util_classes import database
+from discord_slash.utils.manage_components import create_button, create_actionrow
+from discord_slash.model import ButtonStyle
 
 class debug(commands.Cog):
   def __init__(self,bot):
@@ -39,3 +41,21 @@ class debug(commands.Cog):
     database.repair_table(dbobj.webhook_profile)
     database.repair_table(dbobj.scores)
     database.repair_table(dbobj.user_link)
+
+  @commands.command(name="button-test",help="Show a message with a button on it. That's it.")
+  async def test_button(self,ctx):
+    buttons = [create_button(style=ButtonStyle.secondary, label="Grey Button", custom_id="grey"), create_button(style=ButtonStyle.green, label="Green Button", custom_id="green")]
+    action_row = create_actionrow(*buttons)
+    await ctx.send("Wow, this message really does have some buttons!",components=[action_row])
+
+  @commands.event
+  async def on_component(ctx: ComponentContext):
+    # you may want to filter or change behaviour based on custom_id or message
+    author = ctx.author
+    id = ctx.custom_id
+    if id == "grey":
+      await ctx.edit_origin(content="{0.mention} pressed a grey button.".format(author))
+    elif id == "green":
+      await ctx.edit_origin(content="{0.mention} pressed a green button.".format(author))
+    else:
+      await ctx.edit_origin(content="{0.mention} pressed a button".format(author))
