@@ -110,10 +110,14 @@ async def on_command_error(ctx,error):
 async def on_component(ctx: ComponentContext):
   pass
 
+async def clear_components(ctx: ComponentContext):
+  await ctx.edit_origin(components=[])
+
 #slash.add_component_callback(some_callback,components=["green","grey"],use_callback_name=False)
 btns = ["btn_"+str(i) for i in range(10)]
-btns.extend(["btn_go","btn_no"])
+btns.extend(["btn_go"])
 slash.add_component_callback(on_component,components=btns,use_callback_name=False)
+slash.add_component_callback(clear_components,components=["btn_no"],use_callback_name=False)
 
 # Load all of the cogs made in the other python files in this
 # project. See the other files in the folder for more details
