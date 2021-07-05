@@ -6,6 +6,8 @@ from util_classes import database
 from config.config_vars import config
 from discord_slash.context import ComponentContext
 from discord_slash import SlashCommand
+from discord_slash.utils.manage_components import create_button, create_actionrow
+from discord_slash.model import ButtonStyle
 from debug_cog import some_callback
 
 # things you should do before running this bot:
@@ -110,15 +112,30 @@ async def on_command_error(ctx,error):
 async def on_component(ctx: ComponentContext):
   await ctx.edit_origin(content="This (otherwise non-functional) keypad has been interacted with at least once.")
 
-async def clear_components(ctx: ComponentContext):
-  await ctx.edit_origin(components=[])
+async def min_keypad(ctx: ComponentContext):
+  buttons = [create_button(style=ButtonStyle.primary, label="Expand", custom_id="expand_keypad")]
+  actionrow = create_actionrow(*buttons)
+  await ctx.edit_origin(components=[actionrow])
+
+async def max_keypad(ctx: ComponentContext):
+  buttons1 = [create_button(style=ButtonStyle.secondary, label=str(i), custom_id="btn_"+str(i)) for i in range(1,4)]
+  buttons2 = [create_button(style=ButtonStyle.secondary, label=str(i), custom_id="btn_"+str(i)) for i in range(4,7)]
+  buttons3 = [create_button(style=ButtonStyle.secondary, label=str(i), custom_id="btn_"+str(i)) for i in range(7,10)]
+  buttons4 = [create_button(style=ButtonStyle.green, label="O", custom_id="btn_go"), create_button(style=ButtonStyle.secondary, label="0", custom_id="btn_0"), create_button(style=ButtonStyle.red, label="X", custom_id="btn_no")]
+
+  action_row1 = create_actionrow(*buttons1)
+  action_row2 = create_actionrow(*buttons2)
+  action_row3 = create_actionrow(*buttons3)
+  action_row4 = create_actionrow(*buttons4)
+  await ctx.edit_origin(components=[action_row1, action_row2, action_row3, action_row4])
 
 #slash.add_component_callback(some_callback,components=["green","grey"],use_callback_name=False)
 btns = ["btn_"+str(i) for i in range(10)]
 btns.extend(["btn_go"])
 print(btns)
-slash.add_component_callback(on_component,components=["btn_1", "btn_2", "btn_3", "btn_4", "btn_5", "btn_6", "btn_7", "btn_8", "btn_9", "btn_0", "btn_go"],use_callback_name=False)
-slash.add_component_callback(clear_components,components=["btn_no"],use_callback_name=False)
+slash.add_component_callback(on_component, components=btns, use_callback_name=False)
+slash.add_component_callback(min_components, components=["btn_no"], use_callback_name=False)
+slash.add_component_callback(max_components, components=["expand_keypad"], use_callback_name=False)
 
 # Load all of the cogs made in the other python files in this
 # project. See the other files in the folder for more details
