@@ -101,7 +101,7 @@ async def on_command_error(ctx,error):
   else:
     name = ctx.command.qualified_name if ctx.command else "None"
     await ctx.send("Command error. Please contact the developer if this persists.")
-    await ctx.send("```\n" + str(error) + "\n```")
+    #await ctx.send("```\n" + str(error) + "\n```")
     #print(str(error))
     logger.exception("Error with command {0} in guild {1.name} ({1.id}): {2}".format(name,ctx.guild,error))
     raise error
@@ -117,7 +117,7 @@ async def clear_components(ctx: ComponentContext):
 btns = ["btn_"+str(i) for i in range(10)]
 btns.extend(["btn_go"])
 print(btns)
-slash.add_component_callback(on_component,components=btns,use_callback_name=False)
+slash.add_component_callback(on_component,components=["btn_1", "btn_2", "btn_3", "btn_4", "btn_5", "btn_6", "btn_7", "btn_8", "btn_9", "btn_0", "btn_go"],use_callback_name=False)
 slash.add_component_callback(clear_components,components=["btn_no"],use_callback_name=False)
 
 # Load all of the cogs made in the other python files in this
