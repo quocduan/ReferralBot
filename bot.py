@@ -134,8 +134,8 @@ btns = ["btn_"+str(i) for i in range(10)]
 btns.extend(["btn_go"])
 print(btns)
 slash.add_component_callback(on_component, components=btns, use_callback_name=False)
-slash.add_component_callback(min_components, components=["btn_no"], use_callback_name=False)
-slash.add_component_callback(max_components, components=["expand_keypad"], use_callback_name=False)
+slash.add_component_callback(min_keypad, components=["btn_no"], use_callback_name=False)
+slash.add_component_callback(max_keypad, components=["expand_keypad"], use_callback_name=False)
 
 # Load all of the cogs made in the other python files in this
 # project. See the other files in the folder for more details
