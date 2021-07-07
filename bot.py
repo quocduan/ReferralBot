@@ -50,7 +50,10 @@ class DiscordLogger(logging.Handler):
       asyncio.ensure_future(channel.send("```{}```".format(self.format(record))))
 
 def get_prefix(bot, message):
-    v = database.select_many(dbobj.servers, id=message.guild.id)
+    try:
+      v = database.select_many(dbobj.servers, id=message.guild.id)
+    except:
+      return ["$"]
     #print(v[0][1])
     test = False
     if v != [] and v != None and test == False:

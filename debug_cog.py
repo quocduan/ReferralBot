@@ -43,6 +43,7 @@ class debug(commands.Cog):
     database.repair_table(dbobj.webhook_profile)
     database.repair_table(dbobj.scores)
     database.repair_table(dbobj.user_link)
+    database.repair_table(dbobj.servers)
 
   @commands.command(name="button-test",help="Show a message with a button on it. That's it.")
   async def test_button(self,ctx):
