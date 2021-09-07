@@ -72,7 +72,14 @@ args = parser.parse_args()
 # Initialize the bot object and pass in the get_prefix method
 # as the way that the bot object will access prefixes and de-
 # -termine which to use.
-bot = commands.Bot(command_prefix=get_prefix)
+
+# https://discordpy.readthedocs.io/en/stable/intents.html
+intents = discord.Intents.default()
+intents.members = True
+
+# client = discord.Client(intents=intents)
+
+bot = commands.Bot(command_prefix=get_prefix, intents=intents)
 slash = SlashCommand(bot, sync_commands=True)
 
 # Remove the bot's default help command, as I replace it in a

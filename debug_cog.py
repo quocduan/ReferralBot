@@ -47,9 +47,12 @@ class debug(commands.Cog):
 
   @commands.command(name="button-test",help="Show a message with a button on it. That's it.")
   async def test_button(self,ctx):
+    print("test_button..............!")
     buttons = [create_button(style=ButtonStyle.secondary, label="Grey Button", custom_id="grey"), create_button(style=ButtonStyle.green, label="Green Button", custom_id="green")]
     action_row = create_actionrow(*buttons)
     await ctx.send("Wow, this message really does have some buttons!",components=[action_row])
+    print("test_button done!")
+
 
   @commands.command(name="keypad-test",help="Show a sample keypad component layout.")
   async def test_pad(self,ctx):
